@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Current",
+        "description": "Access current weather data for any location on Earth. Current weather is frequently updated based on global models and data from more than 40,000 weather stations.",
+        "call_string": "api.openweathermap.org/data/2.5/weather?id="
+    },
+    {
+        "id": 2,
+        "name": "5 day forcast",
+        "description": "5 day forecast is available at any location or city. It includes weather data every 3 hours.",
+        "call_string": "api.openweathermap.org/data/2.5/forecast?id="
+    },
+    {
+        "id": 3,
+        "name": "UV Index",
+        "description": "Access current/forecast/historical UV data for any location on Earth.",
+        "call_string": "api.openweathermap.org/data/2.5/uvi/forecast?"
+    }
+]
