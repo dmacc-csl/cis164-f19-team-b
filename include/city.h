@@ -2,18 +2,19 @@
 #define CITY_H
 
 #include <string>
+using namespace std;
 
 class City {
     private:
         int id;
-        std::string name;
-        std::string country;
+        string name;
+        string country;
         double lon, lat;
     public:
-        City(int, std::string, std::string, double, double);
+        City(int, string, string, double, double);
         int getId() const;
-        std::string getName() const;
-        std::string getCountry() const;
+        string getName() const;
+        string getCountry() const;
         double getLon() const;
         double getLat() const;
 

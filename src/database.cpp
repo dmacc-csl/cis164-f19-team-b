@@ -1,41 +1,22 @@
 #include "database.h"
 
-Database::Database(std::string fileName) : fileName(fileName), session("SQLite", fileName) {
+Database::Database(string fileName) : fileName(fileName), session("SQLite", fileName) {
 }
 
 City Database::getCity(int id) {
-    City c(0, "stub", "stub", 0, 0);
+    string name, country;
+    double lon, lat;
+    session << "SELECT name, country, lon, lat FROM city WHERE city_id = ?",
+            into(name), into(country), into(lon), into(lat), use(id), now;
+    City c(id, name, country, lon, lat);
+
     return c;
 }
 
-
-
-
-
-
-
-
-/*
-#ifndef DATABASE_H
-#define DATABASE_h
-
-#include <iostream>
-#include <string>
-#include "dashboard.h"
-#include "weatherview.h"
-#include "city.h"
-#include "view.h"
-
-class Database {
-    private:
-        string fileName;
-        Session session;
-
-    public:
-        Database(string fileName);
-        City getCity(int id);
-
+map<int, string> Database::getAllCities() {
+    return map<int, string>();
 }
 
-#endif // DATABASE_H
-*/
+
+
+

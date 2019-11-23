@@ -3,6 +3,7 @@
 
 #include "weatherview.h"
 #include "city.h"
+using namespace std;
 
 class Tile {
     private:

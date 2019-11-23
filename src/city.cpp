@@ -1,6 +1,6 @@
 #include "city.h"
 
-City::City(int id, std::string name, std::string country,
+City::City(int id, string name, string country,
             double lon, double lat) {
     this->id = id;
     this->name = name;
@@ -13,11 +13,11 @@ int City::getId() const {
     return id;
 }
 
-std::string City::getName() const {
+string City::getName() const {
     return name;
 }
 
-std::string City::getCountry() const {
+string City::getCountry() const {
     return country;
 }
 
