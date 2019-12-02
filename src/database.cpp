@@ -34,7 +34,14 @@ map<int, string> Database::getAllCities() {
 }
 
 std::vector<Weatherview> Database::getAllWeatherviews() {
+    Statement select(session);
+    select << "SELECT * FROM weatherview", now;
+    RecordSet rs(select);
     std::vector<Weatherview> views;
+    for (auto it = rs.begin(); it != rs.end(); ++it) {
+        Weatherview v(it->get(0), it->get(1), it->get(2), it->get(3));
+        views.push_back(v);
+    }
     return views;
 }
 

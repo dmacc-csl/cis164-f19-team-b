@@ -12,8 +12,10 @@
 #include "weatherview.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SQLite/Connector.h"
+#include "Poco/Data/RecordSet.h"
 using namespace std;
 using namespace Poco::Data::Keywords;
+using namespace Poco::Data;
 using Poco::Data::Session;
 using Poco::Data::Statement;
 
