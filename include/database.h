@@ -34,6 +34,7 @@ class Database {
         Database(const string&);
         City getCity(int id);
         map<int, string> getAllCities();
+        Weatherview getWeatherview(int);
         std::vector<Weatherview> getAllWeatherviews();
 };
 

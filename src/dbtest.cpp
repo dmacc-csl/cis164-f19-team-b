@@ -63,7 +63,16 @@ int main(int argc, char* argv[]) {
     }
 
     // TEST 6
-    cout << "Test 06: getAllWeatherviews() -> [].getName()... ";
+    cout << "Test 06: getWeatherview(id) -> getName... ";
+    Weatherview v = database.getWeatherview(1);
+    if (v.getName().compare("5 day forecast") == 0) {
+        cout << "PASSED" << endl;
+    } else {
+        cout << "FAILED" << endl;
+    }
+
+    // TEST 7
+    cout << "Test 07: getAllWeatherviews() -> [].getName()... ";
     std::vector<Weatherview> views = database.getAllWeatherviews();
     if (views[1].getName().compare("5 day forcast") == 0) {
         cout << "PASSED" << endl;

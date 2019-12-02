@@ -27,10 +27,25 @@ map<int, string> Database::getAllCities() {
     std::vector<int> idVec;
     std::vector<string> nameVec;
     session << "SELECT city_id, name FROM city", into(idVec), into(nameVec), now;
+    if (idVec.size() == 0) {
+        throw DatabaseException("ERROR: No city data in database.");
+    }
+    if (idVec.size() != nameVec.size()) {
+        throw DatabaseException("ERROR: Null of missing value in database.");
+    }
     for (int i = 0; i < idVec.size(); ++i) {
         cityMap[idVec[i]] = nameVec[i];
     }
     return cityMap;
+}
+
+Weatherview Database::getWeatherview(int id) {
+    string name, description, callString;
+    // TODO: try/catch?
+    session << "SELECT name, description, call_string FROM weatherview WHERE weatherview_id = ?",
+            into(name), into(description), into(callString), use(id), now;
+    Weatherview v(id, name, description, callString);
+    return v;
 }
 
 std::vector<Weatherview> Database::getAllWeatherviews() {
