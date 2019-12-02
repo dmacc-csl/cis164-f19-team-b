@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
     map<int, string> cm3 = database.getAllCities();
     int v1 = -1;
     for (auto it = cm3.begin(); it != cm3.end(); ++it) {
-        if (it->second.compare("Hurzuf")) {
+        if (it->second.compare("Hurzuf") == 0) {
             v1 = it->first;
             break;
         }

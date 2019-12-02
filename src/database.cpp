@@ -1,6 +1,14 @@
 #include "database.h"
 
-Database::Database(string fileName) : fileName(fileName), session("SQLite", fileName) {
+Database::Database(const string& fileName) : fileCheck(fileName),
+    fileName(fileName), session("SQLite", fileName) {
+}
+
+FileCheck::FileCheck(const string& f) {
+    ifstream fs(f);
+    if (!fs) {
+        throw DatabaseException("ERROR: Filename or path does not exist.");
+    }
 }
 
 City Database::getCity(int id) {
@@ -14,9 +22,21 @@ City Database::getCity(int id) {
 }
 
 map<int, string> Database::getAllCities() {
-    return map<int, string>();
+    // TODO: rewrite this and burn any evidence it was ever written
+    map<int, string> cityMap;
+    std::vector<int> idVec;
+    std::vector<string> nameVec;
+    session << "SELECT city_id, name FROM city", into(idVec), into(nameVec), now;
+    for (int i = 0; i < idVec.size(); ++i) {
+        cityMap[idVec[i]] = nameVec[i];
+    }
+    return cityMap;
 }
 
+std::vector<Weatherview> Database::getAllWeatherviews() {
+    std::vector<Weatherview> views;
+    return views;
+}
 
 
 
