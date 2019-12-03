@@ -90,8 +90,8 @@ int main(int argc, char* argv[]) {
 
     // TEST 8
     cout << "Test 08: getTile() -> getName... ";
-    Tile* t2 = database.getTile(1);
-    if(t2->getCity().getName().compare("Hurzuf") == 0) {
+    Tile t2 = database.getTile(1);
+    if(t2.getCity().getName().compare("Hurzuf") == 0) {
         cout << "PASSED" << endl;
     } else {
         cout << "FAILED" << endl;

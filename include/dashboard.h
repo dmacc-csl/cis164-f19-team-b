@@ -10,17 +10,17 @@ class Dashboard {
     private:
         int id;
         string name;
-        vector<Tile*> tiles;
+        vector<Tile> tiles;
     public:
-        Dashboard(string, vector<Tile*>);
-        Dashboard(int, string, vector<Tile*>);
+        Dashboard(string, vector<Tile>);
+        Dashboard(int, string, vector<Tile>);
         ~Dashboard();
         int getId() const;
         void setId(int);
         string getName() const;
         void setName(string);
-        vector<Tile*> getTiles() const;
-        void setTiles(vector<Tile*>);
+        vector<Tile> getTiles() const;
+        void setTiles(vector<Tile>);
 };
 
 #endif //DASHBOARD_H

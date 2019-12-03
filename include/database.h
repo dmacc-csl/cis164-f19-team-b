@@ -37,7 +37,7 @@ class Database {
         Weatherview getWeatherview(int);
         std::vector<Weatherview> getAllWeatherviews();
         void insertTile(Tile&, int);
-        Tile* getTile(int);
+        Tile getTile(int);
         void insertDashboard(Dashboard&);
         Dashboard getDashboard(int);
         std::vector<Dashboard> getAllDashboards();

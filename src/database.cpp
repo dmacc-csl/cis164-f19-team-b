@@ -76,7 +76,7 @@ void Database::insertTile(Tile& t, int p) {
             use(wId), use(cId), use(p), now;
 }
 
-Tile* Database::getTile(int id) {
+Tile Database::getTile(int id) {
     int wId, cId, cLon, cLat;
     string wName, wDescription, wCallString, cName, cCountry;
     session << "SELECT weatherview_id, city_id "
@@ -92,9 +92,10 @@ Tile* Database::getTile(int id) {
                "FROM city "
                "WHERE city_id = ?",
             into(cName), into(cCountry), into(cLon), into(cLat), use(cId), now;
-    Weatherview *w = new Weatherview(wId, wName, wDescription, wCallString);
-    City *c = new City(cId, cName, cCountry, cLon, cLat);
-    return new Tile(id, *w, *c);
+    Weatherview w(wId, wName, wDescription, wCallString);
+    City c(cId, cName, cCountry, cLon, cLat);
+    Tile t(id, w, c);
+    return t;
 }
 
 void Database::insertDashboard(Dashboard& d) {
@@ -104,8 +105,8 @@ void Database::insertDashboard(Dashboard& d) {
                 "VALUES (?)",
             use(dId), now;
     session << "SELECT last_insert_rowid()", into(dId), now;
-    for (Tile *t : d.getTiles()) {
-        insertTile(*t, dId);
+    for (Tile t : d.getTiles()) {
+        insertTile(t, dId);
     }
 }
 
@@ -117,14 +118,15 @@ std::vector<Dashboard> Database::getAllDashboards() {
             now;
     RecordSet rsd(select);
     for (auto r : rsd) {
-        std::vector<Tile*> tiles;
+        std::vector<Tile> tiles;
         std::vector<int> tIds;
         session << "SELECT tile_id "
                     "FROM tile "
                     "WHERE dashboard_id = ?",
                 into(tIds), use(r.get(0)), now;
         for (int id : tIds) {
-            tiles.push_back(getTile(id));
+            Tile t = getTile(id);
+            tiles.push_back(t);
         }
         Dashboard d(r.get(0), r.get(1), tiles);
         cout << d.getId() << endl; //debug

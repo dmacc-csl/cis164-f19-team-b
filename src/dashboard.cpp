@@ -1,21 +1,18 @@
 #include "dashboard.h"
 
-Dashboard::Dashboard(string name, vector<Tile*> tiles)
+Dashboard::Dashboard(string name, vector<Tile> tiles)
                 : tiles(tiles) {
     this->id = -1;
     this->name = name;
 }
 
-Dashboard::Dashboard(int id, string name, vector<Tile*> tiles)
+Dashboard::Dashboard(int id, string name, vector<Tile> tiles)
                 : tiles(tiles) {
     this->id = id;
     this->name = name;
 }
 
 Dashboard::~Dashboard() {
-    for (Tile* t : tiles) {
-        delete(t);
-    }
 }
 
 int Dashboard::getId() const {
@@ -34,13 +31,13 @@ void Dashboard::setName(string name) {
     this->name = name;
 }
 
-vector<Tile*> Dashboard::getTiles() const {
+vector<Tile> Dashboard::getTiles() const {
     return tiles;
 }
 
-void Dashboard::setTiles(vector<Tile*> tiles) {
+void Dashboard::setTiles(vector<Tile> tiles) {
     this->tiles.clear();
-    for (Tile* t : tiles) {
+    for (Tile t : tiles) {
         this->tiles.push_back(t);
     }
 }
