@@ -31,16 +31,16 @@ int main(int argc, char* argv[]) {
     }
 
     // TEST 3
-    cout << "Test 03: getAllCities() -> count... ";
-    map<int, string> cm1 = database.getAllCities();
+    cout << "Test 03: getAllCitiesI() -> count... ";
+    map<int, string> cm1 = database.getAllCitiesI();
     if (cm1.count(707860) == 1) {
         cout << "PASSED" << endl;
     } else {
         cout << "FAILED" << endl;
     }
     // TEST 4
-    cout << "Test 04: getAllCities() -> at... ";
-    map<int, string> cm2 = database.getAllCities();
+    cout << "Test 04: getAllCitiesI() -> at... ";
+    map<int, string> cm2 = database.getAllCitiesI();
     if (cm2.count(707860) == 1 && cm2.at(707860).compare("Hurzuf") == 0) {
         cout << "PASSED" << endl;
     } else {
@@ -48,8 +48,8 @@ int main(int argc, char* argv[]) {
     }
 
     // TEST 5
-    cout << "Test 05: getAllCities() -> find by name... ";
-    map<int, string> cm3 = database.getAllCities();
+    cout << "Test 05: getAllCitiesI() -> find by name... ";
+    map<int, string> cm3 = database.getAllCitiesI();
     int v1 = -1;
     for (auto it = cm3.begin(); it != cm3.end(); ++it) {
         if (it->second.compare("Hurzuf") == 0) {
@@ -81,12 +81,15 @@ int main(int argc, char* argv[]) {
         cout << "FAILED" << endl;
     }
 
-    /*
-    City tc1 = database.getCity(707860);
-    Weatherview tv1 = database.getWeatherview(1);
-    Tile t1(tv1, tc1);
-    database.insertTile(t1, 0);
-    */
+    // SETUP
+    database.clearTables();
+    City dc1 = database.getCity(707860);
+    Weatherview dw1 = database.getWeatherview(1);
+    Tile dt1(dw1, dc1);
+    std::vector<Tile> dv1;
+    dv1.push_back(dt1);
+    Dashboard db1("testboard1", dv1);
+    database.insertDashboard(db1);
 
     // TEST 8
     cout << "Test 08: getTile() -> getName... ";
@@ -97,24 +100,32 @@ int main(int argc, char* argv[]) {
         cout << "FAILED" << endl;
     }
 
-    /*
-    City dc1 = database.getCity(707860);
-    Weatherview dw1 = database.getWeatherview(1);
-    Tile dt1(dw1, dc1);
-    std::vector<Tile> dv1;
-    dv1.push_back(dt1);
-    Dashboard db1("testboard1", dv1);
-    database.insertDashboard(db1);
-    */
-
-
-    cout << "\n\nStarting getAllDashboards" << endl;
+    // TEST 9
+    cout << "Test 09: getAllDashboards() -> getName... ";
     std::vector<Dashboard> dv2 = database.getAllDashboards();
-    for (Dashboard d : dv2) {
-        cout << d.getName() << endl;
+    if (dv2[0].getName().compare("testboard1") == 0) {
+        cout << "PASSED" << endl;
+    } else {
+        cout << "FAILED" << endl;
     }
 
-    cout << "blah blah" << endl;
+    // TEST 10
+    cout << "Test 10: getAllDashboards() -> getTiles.getCity.getName... ";
+    std::vector<Dashboard> dv3 = database.getAllDashboards();
+    if (dv3[0].getTiles()[0].getCity().getName().compare("Hurzuf") == 0) {
+        cout << "PASSED" << endl;
+    } else {
+        cout << "FAILED" << endl;
+    }
+
+
+
+    /*
+    for (Dashboard d : dv2) {
+        cout << d.getName() << endl;
+        cout << d.getTiles()[0].getCity().getName() << endl;
+    }
+    */
 
 
 

@@ -23,7 +23,7 @@ City Database::getCity(int id) {
     return c;
 }
 
-map<int, string> Database::getAllCities() {
+map<int, string> Database::getAllCitiesI() {
     // TODO: rewrite this and burn any evidence it was ever written
     map<int, string> cityMap;
     std::vector<int> idVec;
@@ -39,6 +39,26 @@ map<int, string> Database::getAllCities() {
     }
     for (int i = 0; i < idVec.size(); ++i) {
         cityMap[idVec[i]] = nameVec[i];
+    }
+    return cityMap;
+}
+
+map<string, int> Database::getAllCitiesN() {
+    // TODO: rewrite this and burn any evidence it was ever written
+    map<string, int> cityMap;
+    std::vector<int> idVec;
+    std::vector<string> nameVec;
+    session << "SELECT city_id, name  "
+               "FROM city",
+            into(idVec), into(nameVec), now;
+    if (idVec.size() == 0) {
+        throw DatabaseException("ERROR: No city data in database.");
+    }
+    if (idVec.size() != nameVec.size()) {
+        throw DatabaseException("ERROR: Null of missing value in database.");
+    }
+    for (int i = 0; i < idVec.size(); ++i) {
+        cityMap[nameVec[i]] = idVec[i];
     }
     return cityMap;
 }
@@ -99,15 +119,32 @@ Tile Database::getTile(int id) {
 }
 
 void Database::insertDashboard(Dashboard& d) {
-    int dId;
+    int dId = d.getId();
     string dName = d.getName();
-    session << "INSERT INTO dashboard (name) "
-                "VALUES (?)",
-            use(dName), now;
-    session << "SELECT last_insert_rowid()", into(dId), now;
+    if (d.getId() != -1) {
+        deleteDashboard(d);
+        session << "INSERT INTO dashboard (dashboard_id, name) "
+                    "VALUES (?, ?)",
+                use(dId), use(dName), now;
+    } else {
+        session << "INSERT INTO dashboard (name) "
+                    "VALUES (?)",
+                use(dName), now;
+        session << "SELECT last_insert_rowid()", into(dId), now;
+    }
     for (Tile t : d.getTiles()) {
         insertTile(t, dId);
     }
+}
+
+void Database::deleteDashboard(Dashboard& d) {
+    int oldId = d.getId();
+    session << "DELETE FROM tile "
+                "WHERE dashboard_id = ?",
+            use(oldId), now;
+    session << "DELETE FROM dashboard "
+                "WHERE dashboard_id = ?",
+            use(oldId), now;
 }
 
 std::vector<Dashboard> Database::getAllDashboards() {
@@ -129,9 +166,12 @@ std::vector<Dashboard> Database::getAllDashboards() {
             tiles.push_back(t);
         }
         Dashboard d(r.get(0), r.get(1), tiles);
-        cout << d.getId() << endl; //debug
         boards.push_back(d);
     }
     return boards;
 }
 
+void Database::clearTables() {
+    session << "DELETE FROM tile", now;
+    session << "DELETE FROM dashboard", now;
+}

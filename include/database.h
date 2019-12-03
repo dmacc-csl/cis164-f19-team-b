@@ -30,16 +30,20 @@ class Database {
         FileCheck fileCheck;
         string fileName;
         Session session;
+        Weatherview getWeatherview(int);
+        void insertTile(Tile&, int);
+        Tile getTile(int);
+        void clearTables();
+        friend int main(int argc, char* argv[]);
     public:
         Database(const string&);
         City getCity(int id);
-        map<int, string> getAllCities();
-        Weatherview getWeatherview(int);
+        map<int, string> getAllCitiesI();
+        map<string, int> getAllCitiesN();
         std::vector<Weatherview> getAllWeatherviews();
-        void insertTile(Tile&, int);
-        Tile getTile(int);
         void insertDashboard(Dashboard&);
         Dashboard getDashboard(int);
+        void deleteDashboard(Dashboard&);
         std::vector<Dashboard> getAllDashboards();
 };
 
