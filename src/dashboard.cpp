@@ -12,6 +12,12 @@ Dashboard::Dashboard(int id, string name, vector<Tile*> tiles)
     this->name = name;
 }
 
+Dashboard::~Dashboard() {
+    for (Tile* t : tiles) {
+        delete(t);
+    }
+}
+
 int Dashboard::getId() const {
     return id;
 }
@@ -33,6 +39,9 @@ vector<Tile*> Dashboard::getTiles() const {
 }
 
 void Dashboard::setTiles(vector<Tile*> tiles) {
-    this->tiles = tiles;
+    this->tiles.clear();
+    for (Tile* t : tiles) {
+        this->tiles.push_back(t);
+    }
 }
 

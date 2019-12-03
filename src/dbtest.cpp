@@ -3,6 +3,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+
     string dbfile = "dashboards.db";
     if (argc > 1) {
         dbfile = argv[1];
@@ -72,7 +73,7 @@ int main(int argc, char* argv[]) {
     }
 
     // TEST 7
-    cout << "Test 07: getAllWeatherviews() -> [].getName()... ";
+    cout << "Test 07: getAllWeatherviews() -> [].getName... ";
     std::vector<Weatherview> views = database.getAllWeatherviews();
     if (views[1].getName().compare("5 day forcast") == 0) {
         cout << "PASSED" << endl;
@@ -80,5 +81,37 @@ int main(int argc, char* argv[]) {
         cout << "FAILED" << endl;
     }
 
+    /*
+    City tc1 = database.getCity(707860);
+    Weatherview tv1 = database.getWeatherview(1);
+    Tile t1(tv1, tc1);
+    database.insertTile(t1, 0);
+    */
 
+    // TEST 8
+    cout << "Test 08: getTile() -> getName... ";
+    Tile* t2 = database.getTile(1);
+    if(t2->getCity().getName().compare("Hurzuf") == 0) {
+        cout << "PASSED" << endl;
+    } else {
+        cout << "FAILED" << endl;
+    }
+
+    cout << "\n\nStarting getAllDashboards" << endl;
+    std::vector<Dashboard> dv1 = database.getAllDashboards();
+    //for (auto it = dv1.begin(); it != dv1.end(); ++it) {
+    /*
+    for (Dashboard d : dv1) {
+        cout << "startloop" << endl;
+        cout << d.getName() << endl;
+        cout << "endloop" << endl;
+    }
+    */
+    cout << dv1[0].getName() << endl;
+
+    cout << "blah blah" << endl;
+
+
+
+    return 0;
 }

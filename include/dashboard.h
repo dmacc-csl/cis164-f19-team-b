@@ -14,6 +14,7 @@ class Dashboard {
     public:
         Dashboard(string, vector<Tile*>);
         Dashboard(int, string, vector<Tile*>);
+        ~Dashboard();
         int getId() const;
         void setId(int);
         string getName() const;

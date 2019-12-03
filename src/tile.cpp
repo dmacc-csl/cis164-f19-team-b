@@ -10,6 +10,11 @@ Tile::Tile(int id, Weatherview& weatherview, City& city)
     this->id = id;
 }
 
+Tile::~Tile() {
+    delete &weatherview;
+    delete &city;
+}
+
 int Tile::getId() const {
     return id;
 }

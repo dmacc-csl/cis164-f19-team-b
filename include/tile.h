@@ -13,6 +13,7 @@ class Tile {
     public:
         Tile(Weatherview&, City&);
         Tile(int, Weatherview&, City&);
+        ~Tile();
         int getId () const;
         void setId(int);
         Weatherview& getWeatherview() const;
