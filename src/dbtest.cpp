@@ -97,17 +97,22 @@ int main(int argc, char* argv[]) {
         cout << "FAILED" << endl;
     }
 
-    cout << "\n\nStarting getAllDashboards" << endl;
-    std::vector<Dashboard> dv1 = database.getAllDashboards();
-    //for (auto it = dv1.begin(); it != dv1.end(); ++it) {
     /*
-    for (Dashboard d : dv1) {
-        cout << "startloop" << endl;
-        cout << d.getName() << endl;
-        cout << "endloop" << endl;
-    }
+    City dc1 = database.getCity(707860);
+    Weatherview dw1 = database.getWeatherview(1);
+    Tile dt1(dw1, dc1);
+    std::vector<Tile> dv1;
+    dv1.push_back(dt1);
+    Dashboard db1("testboard1", dv1);
+    database.insertDashboard(db1);
     */
-    cout << dv1[0].getName() << endl;
+
+
+    cout << "\n\nStarting getAllDashboards" << endl;
+    std::vector<Dashboard> dv2 = database.getAllDashboards();
+    for (Dashboard d : dv2) {
+        cout << d.getName() << endl;
+    }
 
     cout << "blah blah" << endl;
 

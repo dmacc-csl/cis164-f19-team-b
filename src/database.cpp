@@ -103,7 +103,7 @@ void Database::insertDashboard(Dashboard& d) {
     string dName = d.getName();
     session << "INSERT INTO dashboard (name) "
                 "VALUES (?)",
-            use(dId), now;
+            use(dName), now;
     session << "SELECT last_insert_rowid()", into(dId), now;
     for (Tile t : d.getTiles()) {
         insertTile(t, dId);
