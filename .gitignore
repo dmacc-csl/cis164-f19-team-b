@@ -33,3 +33,6 @@
 
 # Database binary files
 *.db
+
+# Miscellaneous
+edit.sh

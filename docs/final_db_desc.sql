@@ -11,19 +11,19 @@ purely a composite key, I've included a sequenced primary key for ease of
 handling elsewhere in the program.
 */
 
--- boolean insertProfile(Profile &p)
-INSERT INTO profile (name)
-VALUES (p.name);
+-- boolean insertDashboard(Dashboard &d)
+INSERT INTO dashboard (name)
+VALUES (d.name);
 /*
-Presumably a profile object will contain an array of tiles and the logic
-in the insertProfile member function would make use of the insertTile function
+Presumably a dashboard object will contain an array of tiles and the logic
+in the insertDashboard member function would make use of the insertTile function
 in addition to doing some input validation.
 */
 
--- boolean updateProfile(Profile &p)
-UPDATE profile
-   SET name = p.name
- WHERE profile_id = p.id;
+-- boolean updateDashboard(Dashboard &d)
+UPDATE dashboard
+   SET name = d.name
+ WHERE profile_id = d.id;
 /*
 Uses a profile object to update a profile in the database. Again, this function
 would make use of the updateTile function in addition to updating the profile
@@ -52,24 +52,24 @@ need to change the profile that a tile object belongs to, the update statement
 does not set the value of profile_id.
 */
 
--- map<int, string> getAllProfiles()
+-- map<int, string> getAllDashboards()
 SELECT *
   FROM profile;
 /*
-Gets all profile names and IDs so that a profile can be requested by id.
+Gets all dashboard names and IDs so that a profile can be requested by id.
 */
 
--- Profile getProfile(int id)
+-- Dashboard getDashboard(int id)
 SELECT name
-  FROM profile
- WHERE profile_id = id;
+  FROM dashboard
+ WHERE dashboard_id = id;
 SELECT t.tile_id, v.view_id, v.name, v.description, c.city_id, c.name
   FROM tile t
   JOIN view v
     ON t.view_id = v.view_id
   JOIN city
     ON t.city_id = c.city_id
- WHERE t.profile_id = id;
+ WHERE t.dashboard_id = id;
 /*
 Uses a single result query to get the name of the profile to create the
 profile object and then uses a multiple row query to fetch all of the

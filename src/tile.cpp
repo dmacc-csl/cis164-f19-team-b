@@ -1,13 +1,16 @@
 #include "tile.h"
 
-Tile::Tile(Weatherview& weatherview, City& city)
+Tile::Tile(Weatherview weatherview, City city)
             : weatherview(weatherview), city(city) {
     this->id = -1;
 }
 
-Tile::Tile(int id, Weatherview& weatherview, City& city)
+Tile::Tile(int id, Weatherview weatherview, City city)
             : weatherview(weatherview), city(city) {
     this->id = id;
+}
+
+Tile::~Tile() {
 }
 
 int Tile::getId() const {
@@ -18,7 +21,7 @@ void Tile::setId(int id) {
     this->id = id;
 }
 
-Weatherview& Tile::getWeatherview() const {
+Weatherview Tile::getWeatherview() const {
     return weatherview;
 }
 
@@ -26,7 +29,7 @@ void Tile::setWeatherview(Weatherview& weatherview) {
     this->weatherview = weatherview;
 }
 
-City& Tile::getCity() const {
+City Tile::getCity() const {
     return city;
 }
 

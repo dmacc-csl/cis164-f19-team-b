@@ -1,7 +1,7 @@
 #include "weatherview.h"
 
-Weatherview::Weatherview(int, std::string, std::string,
-        std::string) {
+Weatherview::Weatherview(int id, std::string name, std::string description,
+        std::string callString) {
     this->id = id;
     this->name = name;
     this->description = description;

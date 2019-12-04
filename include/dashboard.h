@@ -4,21 +4,23 @@
 #include <string>
 #include <vector>
 #include "tile.h"
+using namespace std;
 
 class Dashboard {
     private:
         int id;
-        std::string name;
-        std::vector<Tile*> tiles;
+        string name;
+        vector<Tile> tiles;
     public:
-        Dashboard(std::string, std::vector<Tile*>);
-        Dashboard(int, std::string, std::vector<Tile*>);
+        Dashboard(string, vector<Tile>);
+        Dashboard(int, string, vector<Tile>);
+        ~Dashboard();
         int getId() const;
         void setId(int);
-        std::string getName() const;
-        void setName(std::string);
-        std::vector<Tile*> getTiles() const;
-        void setTiles(std::vector<Tile*>);
+        string getName() const;
+        void setName(string);
+        vector<Tile> getTiles() const;
+        void setTiles(vector<Tile>);
 };
 
 #endif //DASHBOARD_H
