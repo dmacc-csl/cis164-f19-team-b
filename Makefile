@@ -1,25 +1,39 @@
-out: obj/city.o obj/weatherview.o obj/tile.o \
-		obj/dashboard.o obj/database.o obj/dbtest.o
-	g++ obj/city.o obj/weatherview.o obj/tile.o \
-		obj/dashboard.o obj/database.o obj/dbtest.o \
-		-Iinclude -I/usr/include -L/usr/lib -lPocoFoundation \
-		-lPocoData -lPocoDataSQLite -g
 
+# core object list
+OBJECTS=obj/city.o obj/weatherview.o obj/tile.o \
+		obj/dashboard.o obj/database.o
+
+# use -g for debug flags
+G=-g
+
+# use to generate profiler file
+PG=-pg
+
+# database tester
+testdb: ${OBJECTS} obj/dbtest.o
+	g++ ${OBJECTS} obj/dbtest.o -Iinclude -I/usr/include -L/usr/lib \
+		-lPocoFoundation -lPocoData -lPocoDataSQLite ${G} ${PG}
+
+# core objects
 obj/city.o: include/city.h src/city.cpp
-	g++ src/city.cpp -Iinclude -g -c -o obj/city.o
+	g++ src/city.cpp -Iinclude ${G} -c -o obj/city.o
 
 obj/weatherview.o: include/weatherview.h src/weatherview.cpp
-	g++ src/weatherview.cpp -Iinclude -g -c -o obj/weatherview.o
+	g++ src/weatherview.cpp -Iinclude ${G} -c -o obj/weatherview.o
 
 obj/tile.o: include/tile.h src/tile.cpp
-	g++ src/tile.cpp -Iinclude -g -c -o obj/tile.o
+	g++ src/tile.cpp -Iinclude ${G} -c -o obj/tile.o
 
 obj/dashboard.o: include/dashboard.h src/database.cpp
-	g++ src/dashboard.cpp -Iinclude -g -c -o obj/dashboard.o
+	g++ src/dashboard.cpp -Iinclude ${G} -c -o obj/dashboard.o
 
 obj/database.o: include/database.h src/database.cpp
-	g++ src/database.cpp -Iinclude -g -c -o obj/database.o
+	g++ src/database.cpp -Iinclude ${G} -c -o obj/database.o
 
 obj/dbtest.o: src/dbtest.cpp
-	g++ src/dbtest.cpp -Iinclude -g -c -o obj/dbtest.o
+	g++ src/dbtest.cpp -Iinclude ${G} -c -o obj/dbtest.o
+
+# clean binaries and object files
+clean:
+	rm *.out obj/*
 

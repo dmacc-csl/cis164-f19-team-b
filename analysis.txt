@@ -1,0 +1,70 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 14.06      0.09     0.09                             std::less<int>::operator()(int const&, int const&) const
+  9.38      0.15     0.06                             std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_lower_bound(std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*, std::_Rb_tree_node_base*, int const&)
+  7.81      0.20     0.05                             std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_S_right(std::_Rb_tree_node_base*)
+  7.03      0.25     0.05                             std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_valptr() const
+  6.25      0.29     0.04                             std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_S_key(std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const*)
+  4.69      0.32     0.03                             Poco::AtomicCounter::operator++()
+  4.69      0.35     0.03                             __gnu_cxx::__aligned_membuf<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_addr() const
+  3.13      0.37     0.02                             Poco::Data::Extraction<std::vector<int, std::allocator<int> > >::extract(unsigned long)
+  3.13      0.39     0.02                             std::vector<int, std::allocator<int> >::back()
+  3.13      0.41     0.02                             std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_S_key(std::_Rb_tree_node_base const*)
+  3.13      0.43     0.02                             std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*& std::forward<std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*&>(std::remove_reference<std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*&>::type&)
+  2.34      0.44     0.02                             std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::operator()(std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) const
+  1.56      0.45     0.01                             Poco::Data::Extraction<std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::extract(unsigned long)
+  1.56      0.46     0.01                             Poco::SharedPtr<Poco::Data::AbstractExtractor, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Data::AbstractExtractor> >::release()
+  1.56      0.47     0.01                             Poco::SharedPtr<Poco::Data::AbstractExtractor, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Data::AbstractExtractor> >::SharedPtr(Poco::SharedPtr<Poco::Data::AbstractExtractor, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Data::AbstractExtractor> > const&)
+  1.56      0.48     0.01                             Poco::SharedPtr<Poco::Data::AbstractExtractor, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Data::AbstractExtractor> >::~SharedPtr()
+  1.56      0.49     0.01                             __gnu_cxx::__aligned_membuf<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_ptr()
+  1.56      0.50     0.01                             Poco::Data::AbstractExtraction::getExtractor() const
+  1.56      0.51     0.01                             __gnu_cxx::__aligned_membuf<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_ptr() const
+  1.56      0.52     0.01                             __gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >::operator*() const
+  1.56      0.53     0.01                             __gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >::operator-(long) const
+  1.56      0.54     0.01                             std::_Rb_tree_iterator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::operator*() const
+  1.56      0.55     0.01                             std::_Head_base<0ul, int const&, false>::_M_head(std::_Head_base<0ul, int const&, false>&)
+  1.56      0.56     0.01                             std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_valptr()
+  1.56      0.57     0.01                             std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > >::deallocate(std::allocator<std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*, unsigned long)
+  1.56      0.58     0.01                             void std::allocator_traits<std::allocator<int> >::construct<int, int const&>(std::allocator<int>&, int*, int const&)
+  1.56      0.59     0.01                             std::_Rb_tree_iterator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_Rb_tree_iterator(std::_Rb_tree_node_base*)
+  1.56      0.60     0.01                             std::vector<int, std::allocator<int> >::end()
+  1.56      0.61     0.01                             std::vector<int, std::allocator<int> >::push_back(int const&)
+  1.56      0.62     0.01                             std::vector<int, std::allocator<int> >::operator[](unsigned long)
+  1.56      0.63     0.01                             std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_insert_node(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*)
+  1.56      0.64     0.01                             std::_Rb_tree_iterator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > std::_Rb_tree<int, std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::_Select1st<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<int>, std::allocator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<int const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<int const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::piecewise_construct_t const&, std::tuple<int const&>&&, std::tuple<>&&)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.

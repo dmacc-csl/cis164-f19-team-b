@@ -38,6 +38,7 @@ class Database {
     public:
         Database(const string&);
         City getCity(int id);
+        std::vector<City> getCityByName(string);
         map<int, string> getAllCitiesI();
         map<string, int> getAllCitiesN();
         std::vector<Weatherview> getAllWeatherviews();
