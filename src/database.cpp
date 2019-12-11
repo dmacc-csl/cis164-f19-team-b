@@ -23,6 +23,21 @@ City Database::getCity(int id) {
     return c;
 }
 
+std::vector<City> Database::getCityByName(string cName) {
+    std::vector<City> cities;
+    Statement select(session);
+    select << "SELECT * "
+              "FROM city"
+              "WHERE name = ?",
+            use(cName), now;
+    RecordSet rs(select);
+    for (auto it = rs.begin(); it != rs.end(); ++it) {
+        City c(it->get(0), it->get(1), it->get(2), it->get(3), it->get(4));
+        cities.push_back(c);
+    }
+    return cities;
+}
+
 map<int, string> Database::getAllCitiesI() {
     // TODO: rewrite this and burn any evidence it was ever written
     map<int, string> cityMap;
