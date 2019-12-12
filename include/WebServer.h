@@ -1,13 +1,17 @@
 #ifndef WEB_SERVER_H
 #define WEB_SERVER_H
 
-#include "Bank.h"
+#include "database.h"
+#include <string>
+#include <map>
+
+using namespace std;
 
 class WebServer {
 private:
-    Bank *bank;
+
 public:
-    string drawTile(Tile&, int);
+    std::string drawTile(Tile&, int);
 };
 
 #endif // WEB_SERVER_H

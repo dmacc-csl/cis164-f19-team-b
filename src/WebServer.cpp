@@ -27,13 +27,7 @@ public:
         Poco::Data::SQLite::Connector::registerConnector();
         Database database(dbfile);
         
-        cout << "Test 09: getAllDashboards() -> getName... ";
         std::vector<Dashboard> dashboards = database.getAllDashboards();
-        if (dashboards[0].getName().compare("Default Board") == 0) {
-            cout << "PASSED" << endl;
-        } else {
-            cout << "FAILED" << endl;
-        }
         
         resp.setStatus(HTTPResponse::HTTP_OK);
         resp.setContentType("text/html");
@@ -58,11 +52,8 @@ public:
             }
         }
 
-
         ostream& out = resp.send();
         out <<
-        
-        
         "<h1>Weather Dashboard Viewer</h1>"
         "<form action=\".\" method=\"get\" target=\"_top\">"
             "<input type=\"hidden\" name=\"formName\" value=\"selectView\" />"
@@ -93,13 +84,15 @@ public:
         out << "</form>";
         
         out.flush();
-        
+
+/*
         cout << endl
         << "Response sent for count=" << count++
         << " and URI=" << req.getURI() << endl
         << " and query=" << uri.getQuery() << endl
         << " and param count=" << uri.getQueryParameters().size() << endl;
-
+*/
+ 
     }
     
     string drawTile (Tile& tile, int tCount) {
@@ -193,98 +186,11 @@ protected:
     }
 };
 
-int main(int argc, char** argv)
-{
-    MyServerApp app;
-    return app.run(argc, argv);
-}
-//
 
+/**************** for reals *******************/
+            int main(int argc, char** argv)
+            {
+                MyServerApp app;
+                return app.run(argc, argv);
+            }
 
-//
-//
-//const int BANK_SERVER_PORT = 9090;
-//
-//class BankRequestHandler : public HTTPRequestHandler {
-//private:
-//    Bank &bank;
-//public:
-//    BankRequestHandler(Bank &bank) : bank(bank) { }
-//
-//    virtual void handleRequest(HTTPServerRequest &req, HTTPServerResponse &resp) {
-//        resp.setStatus(HTTPResponse::HTTP_OK);
-//        resp.setContentType("text/html");
-//
-//        std::vector<string> segments;
-//        URI uri(req.getURI());
-//        uri.getPathSegments(segments);
-//
-//        ostream& out = resp.send();
-//        if (segments.size() == 0) {
-//            out <<
-//            "<h1>Weather Dashboard Viewer</h1>"
-//            "<form action=\".\" method=\"get\" target=\"_top\">"
-//                "<input type=\"hidden\" name=\"form\" value=\"selectView\" />"
-//                "<label for=\"dashboard\">Select dashboard:</label>"
-//                "<select name=\"dashboard\" id=\"selDashboard\">"
-//                    "<option value=\"1\">Sample dashboard name 1</option>"
-//                    "<option value=\"2\">Sample dashboard name 2</option>"
-//                "</select>"
-//            "<input type=\"submit\" value=\"Go\" class=\"button\" /></form>";
-//        } else if (segments.size() == 2 && segments[0] == "accounts") {
-//
-//            /**
-//             * TODO: Respond with a message containing the account id and balance.
-//             *        hint 1: segments[1] contains the requested account id as a string
-//             *        hint 2: Use bank.getDatabase().getAccount(accountId, account)
-//             *                You will first need to create an Account object to pass
-//             *                into getAccount(), the account will be set with values
-//             *                from the database (review Module 8).
-//             **/
-//
-//        } else {
-//            out << "<h1>This is not the page you are looking for, move along.</h1>"
-//            << "<p>Host: "   << req.getHost()   << "</p>"
-//            << "<p>Method: " << req.getMethod() << "</p>"
-//            << "<p>URI: "    << req.getURI()    << "</p>";
-//        }
-//        out.flush();
-//
-//        cout << endl << "Response sent for URI " << req.getURI() << endl;
-//    }
-//};
-//
-//class BankRequestHandlerFactory : public HTTPRequestHandlerFactory {
-//private:
-//    Bank &bank;
-//public:
-//    BankRequestHandlerFactory(Bank &bank) : bank(bank) { }
-//
-//    virtual HTTPRequestHandler* createRequestHandler(const HTTPServerRequest &) {
-//        return new BankRequestHandler(bank);
-//    }
-//};
-//
-//class BankServerApp : public ServerApplication {
-//private:
-//    Bank &bank;
-//public:
-//    BankServerApp(Bank &bank) : bank(bank) { }
-//protected:
-//    int main(const std::vector<string> &) {
-//        HTTPServer server(new BankRequestHandlerFactory(bank), ServerSocket(BANK_SERVER_PORT), new HTTPServerParams);
-//        server.start();
-//        cout << "1/64 Bank Server started on port " << BANK_SERVER_PORT << endl;
-//        cout << "Visit http://localhost:" << BANK_SERVER_PORT << endl;
-//
-//        waitForTerminationRequest();
-//        cout << endl << "Shutting down..." << endl;
-//        server.stop();
-//        return Application::EXIT_OK;
-//    }
-//};
-//
-//WebServer::WebServer(Bank &bank, int argc, char **argv) : bank(&bank) {
-//    BankServerApp app(bank);
-//    app.run(argc, argv);
-//}
