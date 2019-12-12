@@ -20,7 +20,33 @@ City Database::getCity(int id) {
             into(name), into(country), into(lon), into(lat), use(id), now;
     City c(id, name, country, lon, lat);
 
+	//if (c.getName().empty()) {
+	//	throw new exception("ERROR: No valid city exists");
+	//} 
+	//I get an unhandled exception for trying to handle an exception?
+	//Memory access violation or something
+
     return c;
+}
+
+
+void Database::insertCity(City& city) {
+	deleteCity(city.getId());
+	int id = city.getId();
+	string name = city.getName();
+	string country = city.getCountry();
+	double lon = city.getLon();
+	double lat = city.getLat();
+
+	session << "INSERT INTO city (city_id, name, country, lon, lat)"
+		"VALUES (?, ?, ?, ?, ?) ",
+		use(id), use(name), use(country), use(lon), use(lat), now;
+}
+
+void Database::deleteCity(int id) {
+	session << "DELETE FROM city "
+		"WHERE city_id = ?",
+		use(id), now;
 }
 
 std::vector<City> Database::getCityByName(string cName) {

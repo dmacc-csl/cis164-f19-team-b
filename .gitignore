@@ -36,3 +36,7 @@
 
 # Miscellaneous
 edit.sh
+*.vs*
+
+# Included Poco files
+include/Poco

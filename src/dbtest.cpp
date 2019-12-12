@@ -1,5 +1,8 @@
 #include <iostream>
 #include "database.h"
+#pragma comment(lib, "ws2_32.lib") // for Visual Studio, pulls in a Windows library
+#pragma comment(lib, "IPHLPAPI.lib") // for Visual Studio, pulls in a Windows library
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -11,7 +14,44 @@ int main(int argc, char* argv[]) {
     Poco::Data::SQLite::Connector::registerConnector();
     Database database(dbfile);
 
+	// Test data to run without python script
+	database.insertCity(City(707860, "Hurzuf", "TEST", 33.3, 33.3));
+	
 
+	//CM TEST 1: INSERT CITY
+	cout << "Test 01: Inserting City into database" << endl;
+	database.insertCity(City(519188, "TEST", "TEST", 37.666668, 33.3));
+	City c1 = database.getCity(519188);
+	if (c1.getName().compare("TEST") == 0) {
+		cout << "Insert successful" << endl;
+	}
+	else {
+		cout << "Insert failed" << endl;
+	}
+
+	//CM TEST 2: DELETE CITY
+	cout << "Test 02: Deleting City from database" << endl;
+	database.deleteCity(519188);
+	std::map<int, string> v1 = database.getAllCitiesI();
+	if (v1.count(519188) == 0) {
+		cout << "Delete successful" << endl;
+	}
+	else {
+		cout << "Delete failed" << endl;
+	}
+
+	//CM TEST 3: ATTEMPT TO RETRIEVE NON-EXISTANT CITY
+	cout << "Test 03: Attempt to get non-existant city from database" << endl;
+	database.deleteCity(519188);
+	City c2 = database.getCity(519188);
+	if (c2.getName().empty()) {
+		cout << "ERROR: City does not exist" << endl;
+	}
+	else {
+		cout << "City exists?" << endl;
+	}
+
+	/*
     // TEST 1
     cout << "Test 01: getCity(id) -> name... ";
     City c1 = database.getCity(707860);
@@ -118,7 +158,7 @@ int main(int argc, char* argv[]) {
         cout << "FAILED" << endl;
     }
 
-
+	*/
 
     /*
     for (Dashboard d : dv2) {
@@ -126,7 +166,7 @@ int main(int argc, char* argv[]) {
         cout << d.getTiles()[0].getCity().getName() << endl;
     }
     */
-
+	
 
 
     return 0;
